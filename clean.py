@@ -1,0 +1,17 @@
+import pandas as pd
+pd.set_option('display.width',None)
+pd.set_option('max_colwidth',1000)
+df = pd.read_csv('new_loan.csv')
+print(df.iloc[0])
+print(df.shape[1])
+
+df = df.drop(['id','member_id','loan_amnt','funded_amnt','grade','sub_grade'],axis=1)
+df = df.drop(['emp_title','zip_code','out_prncp','total_pymnt','total_pymnt_inv'],axis=1)
+df = df.drop(['total_rec_int','total_rec_late_fee','recoveries','collection_recovery_fee'],axis=1)
+df = df.drop(['issue_d','earliest_cr_line','last_pymnt_d','last_credit_pull_d'],axis=1)
+df = df.drop(['collections_12_mths_ex_med','loan_status','application_type','policy_code','initial_list_status','delinq_amnt','chargeoff_within_12_mths','acc_now_delinq'],axis=1)
+df = df.sort_values(by='funded_amnt_inv',ascending=True)
+df.to_csv('new_loan.csv')
+print(df)
+print(df.iloc[0])
+print(df.shape[1])
